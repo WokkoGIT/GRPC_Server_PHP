@@ -1,0 +1,35 @@
+syntax = "proto3";
+package RefundService;
+
+service GreetingService {
+  rpc greeting(HelloRequest) returns (HelloResponse);
+}
+
+service RefundService {
+  rpc refundRequest(RefundRequest) returns (RefundResponse);
+}
+
+message HelloRequest {
+  string name =1;
+  int32 userID = 3;
+  int32 txid = 4;
+  int32 orderID = 5;
+  string refundAddress = 6;
+}
+
+message HelloResponse {
+  string greeting =1;
+}
+
+message RefundRequest {
+  string name =1;
+  int32 userID = 2;
+  int32 txid = 3;
+  int32 orderID = 4;
+  string refundAddress = 5;
+  string accessKey = 6;
+}
+
+message RefundResponse {
+  string refundResponse =1;
+}
