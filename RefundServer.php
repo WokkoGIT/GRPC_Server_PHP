@@ -30,7 +30,7 @@ class RefundService_server extends \RefundService\RefundServiceStub
         return $refundResponse;
     }
 
-    public function clientInfoToConsole(\RefundService\HelloRequest $request){
+    private function clientInfoToConsole(\RefundService\HelloRequest $request){
         echo    "Информация о клиенте:\n\n".
             "Client name: ".$request->getName()."\n".
             "Client txid: ".$request->getTxid()."\n".
