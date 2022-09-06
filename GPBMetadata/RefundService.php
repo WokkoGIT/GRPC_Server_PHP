@@ -16,7 +16,7 @@ class RefundService
         }
         $pool->internalAddGeneratedFile(
             '
-Ž
+¢
 RefundService.protoRefundService"b
 HelloRequest
 name (	
@@ -25,14 +25,16 @@ class RefundService
 orderID (
 refundAddress (	"!
 HelloResponse
-greeting (	"v
+greeting (	"‰
 RefundRequest
 name (	
 userID (
 txid (
 orderID (
-refundAddress (	
-	accessKey (	"(
+refundAddress (	
+
+accessHash (	
+unixTime ("(
 RefundResponse
 refundResponse (	2X
 GreetingServiceE

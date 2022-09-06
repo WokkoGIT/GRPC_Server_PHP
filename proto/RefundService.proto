@@ -27,7 +27,8 @@ message RefundRequest {
   int32 txid = 3;
   int32 orderID = 4;
   string refundAddress = 5;
-  string accessKey = 6;
+  string accessHash = 6;
+  int32 unixTime = 7;
 }
 
 message RefundResponse {

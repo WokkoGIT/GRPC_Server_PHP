@@ -19,7 +19,7 @@ class RefundService_server extends \RefundService\RefundServiceStub
 
     public function refundRequest(\RefundService\RefundRequest $refundRequest, \Grpc\ServerContext $serverContext): ?\RefundService\RefundResponse {
         $refundResponse = new \RefundService\RefundResponse();
-        if ($refundRequest->getAccessKey()==getenv("TRUSTED_SECRET_KEY")) /*Сравниваем ключ клиента и доверенный ключ сервера */ {
+        if ($this->validKeyChecker($refundRequest)) /*Сравниваем хэши клиента и хэш из доверенного ключа сервера */ {
             echo "\nАвторизация клиента ".$refundRequest->getName().": успешно\n";
             if ($this->refundServiceImplementation($refundRequest)) /*Ожидаем ответа от имплементации возврата платежа*/{
                 $refundResponse->setRefundResponse("\nТранзакция "
@@ -42,6 +42,12 @@ class RefundService_server extends \RefundService\RefundServiceStub
     private function refundServiceImplementation (\RefundService\RefundRequest $refundRequest): ?bool {
         //Возвращаем платеж клиента, при успехе возвращаем 0, при проблеме - 1;
         return true;
+    }
+
+    private function validKeyChecker (\RefundService\RefundRequest $request): ?bool {
+        $key = md5(getenv("TRUSTED_SECRET_KEY").$request->getUnixTime(), false);
+        if ($request->getAccessHash()==$key) return true;
+        else return false;
     }
 }
 

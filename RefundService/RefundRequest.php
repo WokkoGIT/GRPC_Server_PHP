@@ -34,9 +34,13 @@ class RefundRequest extends \Google\Protobuf\Internal\Message
      */
     protected $refundAddress = '';
     /**
-     * Generated from protobuf field <code>string accessKey = 6;</code>
+     * Generated from protobuf field <code>string accessHash = 6;</code>
      */
-    protected $accessKey = '';
+    protected $accessHash = '';
+    /**
+     * Generated from protobuf field <code>int32 unixTime = 7;</code>
+     */
+    protected $unixTime = 0;
 
     /**
      * Constructor.
@@ -49,7 +53,8 @@ class RefundRequest extends \Google\Protobuf\Internal\Message
      *     @type int $txid
      *     @type int $orderID
      *     @type string $refundAddress
-     *     @type string $accessKey
+     *     @type string $accessHash
+     *     @type int $unixTime
      * }
      */
     public function __construct($data = NULL) {
@@ -168,23 +173,45 @@ class RefundRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string accessKey = 6;</code>
+     * Generated from protobuf field <code>string accessHash = 6;</code>
      * @return string
      */
-    public function getAccessKey()
+    public function getAccessHash()
     {
-        return $this->accessKey;
+        return $this->accessHash;
     }
 
     /**
-     * Generated from protobuf field <code>string accessKey = 6;</code>
+     * Generated from protobuf field <code>string accessHash = 6;</code>
      * @param string $var
      * @return $this
      */
-    public function setAccessKey($var)
+    public function setAccessHash($var)
     {
         GPBUtil::checkString($var, True);
-        $this->accessKey = $var;
+        $this->accessHash = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 unixTime = 7;</code>
+     * @return int
+     */
+    public function getUnixTime()
+    {
+        return $this->unixTime;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 unixTime = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setUnixTime($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->unixTime = $var;
 
         return $this;
     }
