@@ -21,7 +21,7 @@ class RefundService_server extends \RefundService\RefundServiceStub
         $refundResponse = new \RefundService\RefundResponse();
         if ($refundRequest->getAccessKey()==getenv("TRUSTED_SECRET_KEY")) /*Сравниваем ключ клиента и доверенный ключ сервера */ {
             echo "\nАвторизация клиента ".$refundRequest->getName().": успешно\n";
-            if ($this->refundServiceImplementation($refundRequest)==0) /*Ожидаем ответа от имплементации возврата платежа*/{
+            if ($this->refundServiceImplementation($refundRequest)) /*Ожидаем ответа от имплементации возврата платежа*/{
                 $refundResponse->setRefundResponse("\nТранзакция "
                     .$refundRequest->getTxid()." успешно возвращена на указанный для возврата адрес "
                     .$refundRequest->getRefundAddress().". \n");
@@ -39,9 +39,9 @@ class RefundService_server extends \RefundService\RefundServiceStub
             "Client userID:".$request->getUserID()."\n";
     }
 
-    private function refundServiceImplementation (\RefundService\RefundRequest $refundRequest): ?int {
+    private function refundServiceImplementation (\RefundService\RefundRequest $refundRequest): ?bool {
         //Возвращаем платеж клиента, при успехе возвращаем 0, при проблеме - 1;
-        return 0;
+        return true;
     }
 }
 
